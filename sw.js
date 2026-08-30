@@ -1,19 +1,48 @@
-const CACHE='flightways-dp-v1.3';
-const ASSETS=[
+const CACHE = 'pocket64-v3.4.5'
+const PRIVATE_PHOTO_CACHE_PREFIX = 'pocket64-private-photos-v2'
+const ASSETS = [
   './',
   './index.html',
-  './manifest.webmanifest',
-  './flightways-columbus-logo.png',
-  './dp-icon-192.png',
-  './dp-icon-512.png',
-  './apple-touch-icon.png',
-  './favicon-32.png'
-];
-self.addEventListener('install',e=>{
-  self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));
-});
-self.addEventListener('activate',e=>{
-  e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
-});
-self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));
+  './styles.css?v=3.4.3',
+  './app.js?v=3.4.3',
+  './showcase-sync.js?v=3.4.5',
+  './manifest.webmanifest?v=3.4.3',
+  './jszip.min.js?v=3.4.3',
+  './black-brick-wall.svg',
+  './icon-192.png',
+  './icon-512.png',
+  './pocket64-speedline-v251.png'
+]
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)))
+  self.skipWaiting()
+})
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    Promise.all([
+      caches.keys().then((keys) => Promise.all(
+        keys
+          .filter((key) => key !== CACHE && !key.startsWith(PRIVATE_PHOTO_CACHE_PREFIX))
+          .map((key) => caches.delete(key))
+      )),
+      self.clients.claim(),
+    ])
+  )
+})
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return
+
+  const url = new URL(event.request.url)
+  if (url.pathname.endsWith('/showcase-sync.js')) {
+    event.respondWith(
+      fetch('./showcase-sync.js?v=3.4.5', { cache:'no-store' })
+        .catch(() => caches.match('./showcase-sync.js?v=3.4.5'))
+    )
+    return
+  }
+
+  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)))
+})
