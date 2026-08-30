@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Velcon Corrected DP</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    :root{
+      --bg:#050a12;
+      --panel:#0a1423;
+      --panel2:#0e1d31;
+      --text:#f4f8ff;
+      --muted:#91a2b9;
+      --blue:#3fa9f5;
+      --blue2:#0c67b5;
+      --line:#20344d;
+      --green:#32d583;
+      --amber:#f5b942;
+      --red:#ff5c5c;
+      --shadow:0 16px 44px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:
+      radial-gradient(circle at top right,rgba(63,169,245,.13),transparent 32%),
+      linear-gradient(180deg,#07111f 0%,#04070c 100%);
+      color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      min-height:100%;
+    }
+    body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+    .wrap{width:min(680px,100%);margin:auto;padding:22px 16px 34px}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .mark{
+      width:46px;height:46px;border-radius:14px;
+      background:linear-gradient(145deg,#56bcff,#084e8c);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 24px rgba(31,131,205,.22);
+      display:grid;place-items:center;font-weight:900;font-size:20px;
+    }
+    h1{font-size:24px;line-height:1.05;margin:0}
+    .sub{font-size:13px;color:var(--muted);margin-top:4px}
+    .card{
+      background:linear-gradient(180deg,rgba(14,29,49,.97),rgba(8,18,32,.97));
+      border:1px solid rgba(77,130,177,.2);
+      border-radius:20px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px;
+    }
+    label{display:block;font-size:12px;font-weight:750;letter-spacing:.07em;color:#b8c6d8;text-transform:uppercase;margin:0 0 8px}
+    select,input{
+      width:100%;border:1px solid var(--line);border-radius:14px;
+      background:#07111f;color:white;font-size:18px;font-weight:700;
+      min-height:54px;padding:0 14px;outline:none;
+    }
+    select:focus,input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(63,169,245,.13)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{margin-bottom:14px}
+    .field:last-child{margin-bottom:0}
+    .unit{position:relative}
+    .unit input{padding-right:58px}
+    .unit span{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:700;font-size:13px;pointer-events:none}
+    .result{
+      text-align:center;padding:20px 14px 18px;
+      background:linear-gradient(160deg,rgba(22,58,91,.78),rgba(8,18,32,.98));
+    }
+    .result .eyebrow{font-size:12px;color:#b7c5d8;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .dp{font-size:64px;line-height:1;font-weight:900;letter-spacing:-.045em;margin:8px 0 4px}
+    .psi{font-size:15px;color:var(--muted);font-weight:800}
+    .status{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 14px;border-radius:999px;font-size:14px;font-weight:900;margin-top:14px}
+    .status.ok{background:rgba(50,213,131,.12);color:#68e8a8;border:1px solid rgba(50,213,131,.28)}
+    .status.caution{background:rgba(245,185,66,.13);color:#ffd06e;border:1px solid rgba(245,185,66,.3)}
+    .status.change{background:rgba(255,92,92,.13);color:#ff8b8b;border:1px solid rgba(255,92,92,.33)}
+    .mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+    .stat{background:#07111f;border:1px solid var(--line);border-radius:13px;padding:11px}
+    .stat b{display:block;font-size:18px}
+    .stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+    .notice{font-size:12px;line-height:1.45;color:#93a6bc;padding:2px 4px}
+    .locked{opacity:.9}
+    .lockedbox{background:#08111d!important;color:#aab7c8!important}
+    .footer{text-align:center;color:#65758a;font-size:11px;margin-top:18px}
+    @media(max-width:520px){
+      .wrap{padding:16px 12px 28px}
+      .grid{grid-template-columns:1fr}
+      .dp{font-size:56px}
+      h1{font-size:21px}
+    }
+  .flightways-header{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:4px 0 18px;text-align:center}.flightways-logo{display:block;width:min(310px,82vw);height:auto;object-fit:contain;filter:drop-shadow(0 8px 22px rgba(0,0,0,.28))}.app-title h1{margin:0;font-size:22px;line-height:1.15;letter-spacing:-.02em}.app-title .sub{margin-top:5px}@media(max-width:520px){.flightways-header{gap:10px;margin-top:0;margin-bottom:15px}.flightways-logo{width:min(270px,78vw)}.app-title h1{font-size:20px}}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="flightways-header">
+    <img class="flightways-logo" src="flightways-columbus-logo.png" alt="Flightways Columbus">
+    <div class="app-title"><h1>Corrected Differential Pressure</h1><div class="sub">Velcon fuel filter DP calculator</div></div>
+  </div>
+
+  <div class="card">
+    <div class="field">
+      <label for="equipment">Equipment</label>
+      <select id="equipment">
+        <option value="300">Jet A Truck — 300 GPM</option>
+        <option value="58">100LL Truck — 58 GPM</option>
+        <option value="240">Jet A Facility — 240 GPM</option>
+        <option value="200">100LL Facility — 200 GPM</option>
+      </select>
+    </div>
+
+    <div class="grid">
+      <div class="field">
+        <label for="maxFlow">Max / Rated Flow</label>
+        <div class="unit"><input id="maxFlow" class="lockedbox" inputmode="decimal" type="number" step="0.1" min="0" value="300" readonly tabindex="-1"><span>GPM</span></div>
+      </div>
+      <div class="field">
+        <label for="actualFlow">Actual Flow</label>
+        <div class="unit"><input id="actualFlow" inputmode="decimal" type="number" step="0.1" min="0" placeholder="Enter"><span>GPM</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="observedDP">Observed DP</label>
+      <div class="unit"><input id="observedDP" inputmode="decimal" type="number" step="0.1" min="0" placeholder="Enter"><span>PSI</span></div>
+    </div>
+  </div>
+
+  <div class="card result">
+    <div class="eyebrow">Corrected Differential Pressure</div>
+    <div class="dp" id="correctedDP">—</div>
+    <div class="psi">PSI @ 100% rated flow</div>
+    <div id="status" class="status ok">ENTER TEST VALUES</div>
+
+    <div class="mini">
+      <div class="stat"><b id="ratedPct">—</b><span>Rated Flow</span></div>
+      <div class="stat"><b id="changeOut">—</b><span>Cartridge Change</span></div>
+    </div>
+  </div>
+
+  <div class="card locked">
+    <div class="grid">
+      <div class="field">
+        <label>Correction Method</label>
+        <input class="lockedbox" value="VELCON" readonly tabindex="-1">
+      </div>
+      <div class="field">
+        <label>Change-out Limit</label>
+        <input class="lockedbox" value="15 PSI @ 100% RATED FLOW" readonly tabindex="-1">
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">
+    For use with the approved Velcon filtration configuration and operating procedure applicable to this equipment. Verify filter type, cartridge requirements, and current company/manufacturer instructions before use.
+  </div>
+
+  <div class="footer">Local calculator • No login • No cloud storage</div>
+</div>
+
+<script>
+const equipment = document.getElementById('equipment');
+const maxFlow = document.getElementById('maxFlow');
+const actualFlow = document.getElementById('actualFlow');
+const observedDP = document.getElementById('observedDP');
+const correctedDP = document.getElementById('correctedDP');
+const ratedPct = document.getElementById('ratedPct');
+const changeOut = document.getElementById('changeOut');
+const status = document.getElementById('status');
+
+equipment.addEventListener('change', () => {
+  maxFlow.value = equipment.value;
+  calculate();
+});
+
+[actualFlow, observedDP].forEach(el => el.addEventListener('input', calculate));
+
+function calculate() {
+  const rated = parseFloat(maxFlow.value);
+  const actual = parseFloat(actualFlow.value);
+  const observed = parseFloat(observedDP.value);
+
+  if (!(rated > 0) || !(actual >= 0) || !(observed >= 0)) {
+    correctedDP.textContent = '—';
+    ratedPct.textContent = '—';
+    changeOut.textContent = '—';
+    setStatus('ENTER TEST VALUES', 'ok');
+    return;
+  }
+
+  const percent = (actual / rated) * 100;
+
+  // Mirrors the calculation in the supplied Velcon workbook.
+  const factor =
+    (2.237 * Math.pow(2.718, -0.00896 * percent)) +
+    (9.638 * Math.pow(2.718, -0.04719 * percent));
+
+  const corrected = observed * factor;
+
+  ratedPct.textContent = percent.toFixed(1) + '%';
+
+  if (corrected > 15) {
+    correctedDP.textContent = '>15';
+    changeOut.textContent = 'YES';
+    setStatus('CHANGE-OUT LIMIT EXCEEDED', 'change');
+  } else {
+    correctedDP.textContent = corrected.toFixed(1);
+    changeOut.textContent = 'NO';
+
+    // Visual heads-up only; the workbook's actual change-out threshold remains 15 PSI.
+    if (corrected >= 12) {
+      setStatus('APPROACHING 15 PSI LIMIT', 'caution');
+    } else {
+      setStatus('BELOW CHANGE-OUT LIMIT', 'ok');
+    }
+  }
+}
+
+function setStatus(text, cls) {
+  status.textContent = text;
+  status.className = 'status ' + cls;
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>
