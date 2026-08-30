@@ -1,1 +1,24 @@
-{"name":"Flightways Corrected DP","short_name":"Corrected DP","start_url":"./","display":"standalone","background_color":"#07111f","theme_color":"#12365d"}
+{
+  "name": "Flightways Corrected DP",
+  "short_name": "Corrected DP",
+  "description": "Flightways Columbus corrected differential pressure calculator",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#12365d",
+  "icons": [
+    {
+      "src": "dp-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "dp-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Flightways Corrected DP v1.2
+- Added custom Corrected DP aviation app icon.
+- Added browser favicon.
+- Added iPhone/iPad Add to Home Screen icon.
+- Added 192px and 512px PWA icons for installed desktop/mobile app use.
+- Updated manifest and service-worker cache.
+- Calculator functionality unchanged.
