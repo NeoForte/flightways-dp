@@ -1,0 +1,4 @@
+Flightways Corrected DP v1.3
+- Added a small readable version number in the upper-right of the app.
+- Bumped PWA cache to v1.3 for reliable update verification.
+- Calculator functionality unchanged.
